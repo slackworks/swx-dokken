@@ -11,9 +11,12 @@ RUN apt-get install -y ia32-libs
 
 RUN apt-get install -y libpng12-0 libfreetype6
 
-ADD starbound-steam/assets starbound/assets
-ADD starbound-steam/linux64 starbound/linux64
- 
-WORKDIR starbound/linux64
- 
+ADD starbound-steam/assets /starbound/assets
+ADD starbound-steam/linux64 /starbound/linux64
+ADD starbound.config /starbound/linux64/
+
+WORKDIR /starbound/linux64
+
+VOLUME ["/starbound/universe"]
+
 ENTRYPOINT ./launch_starbound_server.sh
